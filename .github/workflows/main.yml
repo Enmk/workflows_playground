@@ -25,10 +25,10 @@ jobs:
     
   third:
     runs-on: ubuntu-latest
-    needs: [second]
+    needs: [first, second]
     #if: ${{ contains(needs.*.result, 'success') }}
     if: always()
     steps:
       - name: print stuff and pass
-        run: echo '${{ first.result }}'
+        run: echo '${{ toJson(needs[0].result) }}'
         
