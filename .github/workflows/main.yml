@@ -10,9 +10,11 @@ on:
 jobs:
   first:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: print stuff and fail
         run: echo Hello Wordl! && false && exit -1
+
   second:
     runs-on: ubunutu-latest
     needs: [first]
