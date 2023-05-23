@@ -29,7 +29,7 @@ jobs:
     # Run AFTER `second`, but only if `first` succeed.
     # Since we can't reference jobs directly and get their status, 
     # check if any of jobs succeeds.
-    if: ${{ contains(join(needs.*.result), 'success') }}
+    if: ${{ always() && contains(needs.*.result, 'success') }}
     steps:
       - name: print stuff and pass
         run: echo '${{ toJson(needs) }}'
