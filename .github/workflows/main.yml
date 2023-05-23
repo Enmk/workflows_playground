@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [second]
     # attempt to run AFTER second, but only if first succeeded
-    if: always() && ${{ jobs.first.status }}
+    if: always() && ${{ first.status }}
     steps:
       - name: print stuff and pass
         run: echo Hello again!
