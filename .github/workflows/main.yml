@@ -20,6 +20,5 @@ jobs:
     needs: [first]
     steps:
       - name: print stuff and pass
-        if: always()
         run: echo Hello again!
     
