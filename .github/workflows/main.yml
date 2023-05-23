@@ -43,5 +43,5 @@ jobs:
     if: always()
     steps:
       - name: print stuff and pass
-        run: echo '${{ join(needs) }}'
+        run: echo '${{ join(needs.*.result) }}'
 
