@@ -1,0 +1,23 @@
+name: CI
+on:
+  pull_request:
+    branches:
+    - main
+  push:
+    branches:
+      - main
+
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print stuff and fail
+        run: echo Hello Wordl! && false && exit -1
+  second:
+    runs-on: ubunutu-latest
+    needs: [first]
+    steps:
+      - name: print stuff and pass
+        if: always()
+        run: echo Hello again!
+    
