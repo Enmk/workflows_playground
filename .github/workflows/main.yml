@@ -26,8 +26,9 @@ jobs:
   third:
     runs-on: ubuntu-latest
     needs: [second]
+    #if: ${{ contains(needs.*.result, 'success') }}
     if: always()
     steps:
       - name: print stuff and pass
-        run: toJSON(${{ first }})
+        run: echo ${{ join(needs.*.result) }}
         
