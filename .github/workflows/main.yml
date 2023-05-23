@@ -16,7 +16,7 @@ jobs:
         run: echo Hello Wordl! && false && exit -1
 
   second:
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
     needs: [first]
     steps:
       - name: print stuff and pass
