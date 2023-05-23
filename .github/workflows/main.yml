@@ -26,8 +26,10 @@ jobs:
   third:
     runs-on: ubuntu-latest
     needs: [first, second]
-    #if: ${{ contains(needs.*.result, 'success') }}
-    if: always()
+    # Run AFTER `second`, but only if `first` succeed.
+    # Since we can't reference jobs directly and get their status, 
+    # check if any of jobs succeeds.
+    if: ${{ contains(needs.*.result, 'success') }}
     steps:
       - name: print stuff and pass
         run: echo '${{ toJson(needs) }}'
