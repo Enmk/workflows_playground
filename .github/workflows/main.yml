@@ -32,7 +32,7 @@ jobs:
     if: ${{ always() && contains(needs.*.result, 'success') }}
     steps:
       - name: print stuff and pass
-        run: echo '${{ toJson(needs) }}'
+        run: echo '${{ toJson(needs) }}' && exit -1
 
   fourth:
     runs-on: ubuntu-latest
