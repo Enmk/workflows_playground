@@ -45,3 +45,18 @@ jobs:
       - name: print stuff and pass
         run: echo '${{ join(needs.*.result) }}'
 
+  fifth:
+    runs-on: ubuntu-latest
+    needs: [third]
+    if: always()
+    steps:
+      - name: print stuff and fail
+        run: echo Hello from ${{ job.name }}!  && false && exit -1
+
+  sixth:
+    runs-on: ubuntu-latest
+    needs: [third]
+    if: always()
+    steps:
+      - name: print stuff and fail
+        run: echo Hello from ${{ job.name }}!  && false && exit -1
