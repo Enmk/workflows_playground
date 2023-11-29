@@ -14,12 +14,12 @@ jobs:
     steps:
       - id: setVariables
         run: |
-          echo "runners_tags=$input" >> $GITHUB_OUTPUT
+          echo we need to format RUNNERS_ARRAY as JSON array even when we have a single value there: $input
+          RUNNERS_ARRAY="${{ fromJson(inputs.runnersJson) || format('[{0}]', inputs.runnersJson) }}"
+          echo $RUNNERS_ARRAY
+          echo "runners_tags=$RUNNERS_ARRAY" >> $GITHUB_OUTPUT
         env:
-          input: ${{ fromJson(inputs.runnersJson)
-            && fromJson(inputs.runnersJson)
-            || toJson(inputs.runnersJson) }}
-
+          input: ${{ inputs.runnersJson }}
 
   debug_contextes:
     needs: runners_setup
