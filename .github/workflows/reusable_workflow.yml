@@ -16,15 +16,33 @@ jobs:
         uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            cat ${{toJson(github)   }}
-            cat ${{toJson(env)      }}
-            cat ${{toJson(vars)     }}
-            cat ${{toJson(job)      }}
-            cat ${{toJson(steps)    }}
-            cat ${{toJson(runner)   }}
-            cat ${{toJson(secrets)  }}
-            cat ${{toJson(needs)    }}
-            cat ${{toJson(inputs)   }}
+            cat <<JSON
+            ${{toJson(github)   }}
+            JSON
+            cat <<JSON
+            ${{toJson(env)      }}
+            JSON
+            cat <<JSON
+            ${{toJson(vars)     }}
+            JSON
+            cat <<JSON
+            ${{toJson(job)      }}
+            JSON
+            cat <<JSON
+            ${{toJson(steps)    }}
+            JSON
+            cat <<JSON
+            ${{toJson(inputs)   }}
+            JSON
+            cat <<JSON
+            ${{toJson(runner)   }}
+            JSON
+            cat <<JSON
+            ${{toJson(needs)    }}
+            JSON
+            cat <<JSON
+            ${{toJson(secrets)  }}
+            JSON
       - id: setVariables
         run: |
           echo "::set-output name=runners_tags::$input"
@@ -37,12 +55,30 @@ jobs:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            cat ${{toJson(github)   }}
-            cat ${{toJson(env)      }}
-            cat ${{toJson(vars)     }}
-            cat ${{toJson(job)      }}
-            cat ${{toJson(steps)    }}
-            cat ${{toJson(runner)   }}
-            cat ${{toJson(secrets)  }}
-            cat ${{toJson(needs)    }}
-            cat ${{toJson(inputs)   }}
+            cat <<JSON
+            ${{toJson(github)   }}
+            JSON
+            cat <<JSON
+            ${{toJson(env)      }}
+            JSON
+            cat <<JSON
+            ${{toJson(vars)     }}
+            JSON
+            cat <<JSON
+            ${{toJson(job)      }}
+            JSON
+            cat <<JSON
+            ${{toJson(steps)    }}
+            JSON
+            cat <<JSON
+            ${{toJson(inputs)   }}
+            JSON
+            cat <<JSON
+            ${{toJson(runner)   }}
+            JSON
+            cat <<JSON
+            ${{toJson(needs)    }}
+            JSON
+            cat <<JSON
+            ${{toJson(secrets)  }}
+            JSON
