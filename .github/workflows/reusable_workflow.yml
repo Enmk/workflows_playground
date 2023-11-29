@@ -46,6 +46,7 @@ jobs:
     steps:
       - id: setVariables
         run: |
+          echo ${input}
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
         env:
           input: ${{ inputs.runnersJson }}
