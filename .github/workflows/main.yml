@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: list stuff
+        run: ls -lahR
       - name: print stuff and pass
         uses: ./.github/workflow/reusable_workflow.yml
         with:
