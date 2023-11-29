@@ -50,7 +50,7 @@ jobs:
           echo $input
           echo ${input/\[/\[\'self-hosted\',} # prepend self-hosted to the runner tags
           set -x
-          echo "${{ fromJson('123') || toJson('123') }}"
+          # echo "${{ fromJson('321') || toJson('123') }}"
           echo ${{ toJson('foobar') }}
           echo ${{ startsWith('[', env.input)}}
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
