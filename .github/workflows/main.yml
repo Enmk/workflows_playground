@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     #continue-on-error: true
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: print stuff and pass
         uses: ./.github/workflow/reusable_workflow.yml
         with:
