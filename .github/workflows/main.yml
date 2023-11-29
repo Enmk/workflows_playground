@@ -9,9 +9,9 @@ on:
 
 jobs:
   ReusableWorkflow:
-    uses: ./.github/workflows/reusable_workflow.yml
+    #uses: ./.github/workflows/reusable_workflow.yml
     with:
-      runnersJson: ubuntu-latest, ubuntu-22.04
+      runnersJson: ubuntu-latest
         
 
 #   second:
