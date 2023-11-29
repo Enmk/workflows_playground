@@ -13,50 +13,53 @@ jobs:
     #continue-on-error: true
     steps:
       - name: print stuff and pass
-        run: echo Hello Wordl!
+        uses: ./.github/workflow/reusable_workflow.yml
+        with:
+          runnersJson: "['ubuntu-latest', 'ubuntu-22.04']"
+        
 
-  second:
-    runs-on: ubuntu-latest
-    needs: [first]
-    if: always()
-    steps:
-      - name: print stuff and fail
-        run: echo Hello again!
+#   second:
+#     runs-on: ubuntu-latest
+#     needs: [first]
+#     if: always()
+#     steps:
+#       - name: print stuff and fail
+#         run: echo Hello again!
     
-  third:
-    runs-on: ubuntu-latest
-    needs: [first, second]
+#   third:
+#     runs-on: ubuntu-latest
+#     needs: [first, second]
+# #     # Run AFTER `second`, but only if `first` succeed.
+# #     # Since we can't reference jobs directly and get their status, 
+# #     # check if any of jobs succeeds.
+# #     if: ${{ always() && contains(needs.*.result, 'success') }}
+#     steps:
+#       - name: print stuff and pass
+#         run: echo '${{ toJson(needs) }}'
+
+#   fourth:
+#     runs-on: ubuntu-latest
+#     needs: [first, second]
 #     # Run AFTER `second`, but only if `first` succeed.
 #     # Since we can't reference jobs directly and get their status, 
 #     # check if any of jobs succeeds.
-#     if: ${{ always() && contains(needs.*.result, 'success') }}
-    steps:
-      - name: print stuff and pass
-        run: echo '${{ toJson(needs) }}'
+# #     if: always()
+#     steps:
+#       - name: print stuff and pass
+#         run: echo '${{ join(needs.*.result) }}' && false || exit -1
 
-  fourth:
-    runs-on: ubuntu-latest
-    needs: [first, second]
-    # Run AFTER `second`, but only if `first` succeed.
-    # Since we can't reference jobs directly and get their status, 
-    # check if any of jobs succeeds.
-#     if: always()
-    steps:
-      - name: print stuff and pass
-        run: echo '${{ join(needs.*.result) }}' && false || exit -1
+#   fifth:
+#     runs-on: ubuntu-latest
+#     needs: [third]
+#     if: ${{ contains(needs.*.result, 'success') }}
+#     steps:
+#       - name: print stuff and fail
+#         run: echo Hello from '${{ toJson(job) }}'!
 
-  fifth:
-    runs-on: ubuntu-latest
-    needs: [third]
-    if: ${{ contains(needs.*.result, 'success') }}
-    steps:
-      - name: print stuff and fail
-        run: echo Hello from '${{ toJson(job) }}'!
-
-  sixth:
-    runs-on: ubuntu-latest
-    needs: [third]
-    if: ${{ contains(needs.*.result, 'success') }}
-    steps:
-      - name: print stuff and fail
-        run: echo Hello from '${{ toJson(job) }}'!
+#   sixth:
+#     runs-on: ubuntu-latest
+#     needs: [third]
+#     if: ${{ contains(needs.*.result, 'success') }}
+#     steps:
+#       - name: print stuff and fail
+#         run: echo Hello from '${{ toJson(job) }}'!

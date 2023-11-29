@@ -1,0 +1,48 @@
+name: Phony reusable workflow
+on:
+  workflow_call:
+    inputs:
+      runnersJson:
+        description: 'set of tags for a runner'
+        required: true
+        type: string
+jobs:
+  runners_setup:
+    runs-on: ubuntu-latest
+    outputs:
+      runners_tags: ${{ steps.setVariables.outputs.runners_tags }}
+    steps:
+      - name: debug
+        uses: hmarr/debug-action@v2
+      - name: Dump all the contextes
+        run: |
+            echo github:   ${{toJson(github)   }}
+            echo env:      ${{toJson(env)      }}
+            echo vars:     ${{toJson(vars)     }}
+            echo job:      ${{toJson(job)      }}
+            echo steps:    ${{toJson(steps)    }}
+            echo runner:   ${{toJson(runner)   }}
+            echo secrets:  ${{toJson(secrets)  }}
+            echo needs:    ${{toJson(needs)    }}
+            echo inputs:   ${{toJson(inputs)   }}
+      - id: setVariables
+        run: |
+          echo "::set-output name=runners_tags::$input"
+        env:
+          input: ${{ inputs.runnersJson }}
+  codeql:
+    runs-on: ${{fromJson(needs.runners_setup.outputs.runners_tags)}}
+    needs: runners_setup
+    steps:
+      - uses: hmarr/debug-action@v2
+      - name: Dump all the contextes
+        run: |
+            echo github:   ${{toJson(github)   }}
+            echo env:      ${{toJson(env)      }}
+            echo vars:     ${{toJson(vars)     }}
+            echo job:      ${{toJson(job)      }}
+            echo steps:    ${{toJson(steps)    }}
+            echo runner:   ${{toJson(runner)   }}
+            echo secrets:  ${{toJson(secrets)  }}
+            echo needs:    ${{toJson(needs)    }}
+            echo inputs:   ${{toJson(inputs)   }}
