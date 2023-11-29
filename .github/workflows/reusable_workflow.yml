@@ -13,9 +13,9 @@ jobs:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-          cat <<JSON
-          github: ${{toJson(github)   }}
-          JSON
+          # cat <<JSON
+          # github: ${{toJson(github)   }}
+          # JSON
           cat <<JSON
           env: ${{toJson(env)      }}
           JSON
@@ -49,7 +49,7 @@ jobs:
     steps:
       - id: setVariables
         run: |
-          cat <<JSON
+          cat << 'JSON'
           input: ${{ fromJSON(inputs.runnersJson) || inputs.runnersJson}}
           JSON
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
@@ -63,9 +63,9 @@ jobs:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            cat <<JSON
-            github: ${{toJson(github)   }}
-            JSON
+            # cat <<JSON
+            # github: ${{toJson(github)   }}
+            # JSON
             cat <<JSON
             env: ${{toJson(env)      }}
             JSON
