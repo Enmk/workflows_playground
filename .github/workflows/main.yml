@@ -8,18 +8,10 @@ on:
       - main
 
 jobs:
-  first:
-    runs-on: ubuntu-latest
-    #continue-on-error: true
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: list stuff
-        run: ls -lahR --hide='.git/*'
-      - name: print stuff and pass
-        uses: ./.github/workflows/reusable_workflow.yml
-        with:
-          runnersJson: "['ubuntu-latest', 'ubuntu-22.04']"
+  ReusableWorkflow:
+    uses: ./.github/workflows/reusable_workflow.yml
+    with:
+      runnersJson: "['ubuntu-latest', 'ubuntu-22.04']"
         
 
 #   second:
