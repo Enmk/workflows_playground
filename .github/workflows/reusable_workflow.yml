@@ -45,8 +45,12 @@ jobs:
       runners_tags: ${{ steps.setVariables.outputs.runners_tags }}
     steps:
       - id: setVariables
+        name: Prepare variables for the later steps
         run: |
-          echo ${input}
+          echo $input
+          echo ${input/\[/\[\'self-hosted\',} # prepend self-hosted to the runner tags
+          set -x
+          echo "${{ fromJson(env.input) || toJson(env.input) }}"
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
         env:
           input: ${{ inputs.runnersJson }}
