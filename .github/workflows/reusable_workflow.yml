@@ -7,7 +7,42 @@ on:
         required: true
         type: string
 jobs:
+  pre_debug_contextes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hmarr/debug-action@v2
+      - name: Dump all the contextes
+        run: |
+          cat <<JSON
+          github: ${{toJson(github)   }}
+          JSON
+          cat <<JSON
+          env: ${{toJson(env)      }}
+          JSON
+          cat <<JSON
+          vars: ${{toJson(vars)     }}
+          JSON
+          cat <<JSON
+          job: ${{toJson(job)      }}
+          JSON
+          cat <<JSON
+          steps: ${{toJson(steps)    }}
+          JSON
+          cat <<JSON
+          inputs: ${{toJson(inputs)   }}
+          JSON
+          cat <<JSON
+          runner: ${{toJson(runner)   }}
+          JSON
+          cat <<JSON
+          needs: ${{toJson(needs)    }}
+          JSON
+          cat <<JSON
+          secrets: ${{toJson(secrets)  }}
+          JSON
+
   runners_setup:
+    needs: pre_debug_contextes
     runs-on: ubuntu-latest
     outputs:
       runners_tags: ${{ steps.setVariables.outputs.runners_tags }}
@@ -21,7 +56,7 @@ jobs:
         env:
           input: ${{ inputs.runnersJson }}
 
-  debug_contextes:
+  post_debug_contextes:
     needs: runners_setup
     runs-on: ubuntu-latest
     steps:
