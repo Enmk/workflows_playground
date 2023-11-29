@@ -16,15 +16,15 @@ jobs:
         uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            cat github:   ${{toJson(github)   }}
-            cat env:      ${{toJson(env)      }}
-            cat vars:     ${{toJson(vars)     }}
-            cat job:      ${{toJson(job)      }}
-            cat steps:    ${{toJson(steps)    }}
-            cat runner:   ${{toJson(runner)   }}
-            cat secrets:  ${{toJson(secrets)  }}
-            cat needs:    ${{toJson(needs)    }}
-            cat inputs:   ${{toJson(inputs)   }}
+            cat ${{toJson(github)   }}
+            cat ${{toJson(env)      }}
+            cat ${{toJson(vars)     }}
+            cat ${{toJson(job)      }}
+            cat ${{toJson(steps)    }}
+            cat ${{toJson(runner)   }}
+            cat ${{toJson(secrets)  }}
+            cat ${{toJson(needs)    }}
+            cat ${{toJson(inputs)   }}
       - id: setVariables
         run: |
           echo "::set-output name=runners_tags::$input"
@@ -37,12 +37,12 @@ jobs:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            cat github:   ${{toJson(github)   }}
-            cat env:      ${{toJson(env)      }}
-            cat vars:     ${{toJson(vars)     }}
-            cat job:      ${{toJson(job)      }}
-            cat steps:    ${{toJson(steps)    }}
-            cat runner:   ${{toJson(runner)   }}
-            cat secrets:  ${{toJson(secrets)  }}
-            cat needs:    ${{toJson(needs)    }}
-            cat inputs:   ${{toJson(inputs)   }}
+            cat ${{toJson(github)   }}
+            cat ${{toJson(env)      }}
+            cat ${{toJson(vars)     }}
+            cat ${{toJson(job)      }}
+            cat ${{toJson(steps)    }}
+            cat ${{toJson(runner)   }}
+            cat ${{toJson(secrets)  }}
+            cat ${{toJson(needs)    }}
+            cat ${{toJson(inputs)   }}
