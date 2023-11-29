@@ -12,74 +12,51 @@ jobs:
     outputs:
       runners_tags: ${{ steps.setVariables.outputs.runners_tags }}
     steps:
-      - name: debug
-        uses: hmarr/debug-action@v2
-      - name: Dump all the contextes
-        run: |
-            cat <<JSON
-            ${{toJson(github)   }}
-            JSON
-            cat <<JSON
-            ${{toJson(env)      }}
-            JSON
-            cat <<JSON
-            ${{toJson(vars)     }}
-            JSON
-            cat <<JSON
-            ${{toJson(job)      }}
-            JSON
-            cat <<JSON
-            ${{toJson(steps)    }}
-            JSON
-            cat <<JSON
-            ${{toJson(inputs)   }}
-            JSON
-            cat <<JSON
-            ${{toJson(runner)   }}
-            JSON
-            cat <<JSON
-            ${{toJson(needs)    }}
-            JSON
-            cat <<JSON
-            ${{toJson(secrets)  }}
-            JSON
       - id: setVariables
         run: |
           echo "runners_tags=$input" >> $GITHUB_OUTPUT
-        #   echo "::set-output name=runners_tags::$input"
         env:
           input: ${{ inputs.runnersJson }}
+
   debug_contextes:
-    runs-on: ${{fromJson(needs.runners_setup.outputs.runners_tags)}}
     needs: runners_setup
+    runs-on: ubuntu-latest
     steps:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
             cat <<JSON
-            ${{toJson(github)   }}
+            github: ${{toJson(github)   }}
             JSON
             cat <<JSON
-            ${{toJson(env)      }}
+            env: ${{toJson(env)      }}
             JSON
             cat <<JSON
-            ${{toJson(vars)     }}
+            vars: ${{toJson(vars)     }}
             JSON
             cat <<JSON
-            ${{toJson(job)      }}
+            job: ${{toJson(job)      }}
             JSON
             cat <<JSON
-            ${{toJson(steps)    }}
+            steps: ${{toJson(steps)    }}
             JSON
             cat <<JSON
-            ${{toJson(inputs)   }}
+            inputs: ${{toJson(inputs)   }}
             JSON
             cat <<JSON
-            ${{toJson(runner)   }}
+            runner: ${{toJson(runner)   }}
             JSON
             cat <<JSON
-            ${{toJson(needs)    }}
+            needs: ${{toJson(needs)    }}
             JSON
             cat <<JSON
-            ${{toJson(secrets)  }}
+            secrets: ${{toJson(secrets)  }}
             JSON
+
+  bogus_run:
+    needs: runners_setup
+    runs-on: ${{fromJson(needs.runners_setup.outputs.runners_tags)}}
+    timeout-minutes: 1
+    steps:
+        - name: bogus step
+          run: true
