@@ -11,7 +11,7 @@ jobs:
   ReusableWorkflow:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
-      runnersJson: ubuntu-latest
+      runnersJson: "['ubuntu-latest']"
         
 
 #   second:

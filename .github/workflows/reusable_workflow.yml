@@ -46,9 +46,6 @@ jobs:
     steps:
       - id: setVariables
         run: |
-          cat << 'JSON'
-          input: ${{ fromJSON(inputs.runnersJson) || inputs.runnersJson}}
-          JSON
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
         env:
           input: ${{ inputs.runnersJson }}
