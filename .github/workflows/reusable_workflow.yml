@@ -15,7 +15,7 @@ jobs:
       - id: setVariables
         run: |
           echo we need to format RUNNERS_ARRAY as JSON array even when we have a single value there: $input
-          RUNNERS_ARRAY="${{ fromJson(inputs.runnersJson) || format('[{0}]', inputs.runnersJson) }}"
+          RUNNERS_ARRAY=${{ fromJson(inputs.runnersJson) || format('[{0}]', inputs.runnersJson) }}
           echo $RUNNERS_ARRAY
           echo "runners_tags=$RUNNERS_ARRAY" >> $GITHUB_OUTPUT
         env:
