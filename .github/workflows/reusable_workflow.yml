@@ -16,7 +16,10 @@ jobs:
         run: |
           echo "runners_tags=$input" >> $GITHUB_OUTPUT
         env:
-          input: ${{ inputs.runnersJson }}
+          input: ${{ fromJson(inputs.runnersJson)
+            && fromJson(inputs.runnersJson)
+            || toJson(inputs.runnersJson) }}
+
 
   debug_contextes:
     needs: runners_setup
@@ -55,7 +58,7 @@ jobs:
 
   bogus_run:
     needs: runners_setup
-    runs-on: ${{fromJson(needs.runners_setup.outputs.runners_tags)}}
+    runs-on: ${{ fromJson(needs.runners_setup.outputs.runners_tags) }}
     timeout-minutes: 1
     steps:
         - name: bogus step
