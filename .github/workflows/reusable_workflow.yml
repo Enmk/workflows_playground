@@ -13,9 +13,6 @@ jobs:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-          # cat <<JSON
-          # github: ${{toJson(github)   }}
-          # JSON
           cat <<JSON
           env: ${{toJson(env)      }}
           JSON
@@ -63,9 +60,6 @@ jobs:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            # cat <<JSON
-            # github: ${{toJson(github)   }}
-            # JSON
             cat <<JSON
             env: ${{toJson(env)      }}
             JSON
