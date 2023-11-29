@@ -16,33 +16,33 @@ jobs:
         uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            echo github:   ${{toJson(github)   }}
-            echo env:      ${{toJson(env)      }}
-            echo vars:     ${{toJson(vars)     }}
-            echo job:      ${{toJson(job)      }}
-            echo steps:    ${{toJson(steps)    }}
-            echo runner:   ${{toJson(runner)   }}
-            echo secrets:  ${{toJson(secrets)  }}
-            echo needs:    ${{toJson(needs)    }}
-            echo inputs:   ${{toJson(inputs)   }}
+            cat github:   ${{toJson(github)   }}
+            cat env:      ${{toJson(env)      }}
+            cat vars:     ${{toJson(vars)     }}
+            cat job:      ${{toJson(job)      }}
+            cat steps:    ${{toJson(steps)    }}
+            cat runner:   ${{toJson(runner)   }}
+            cat secrets:  ${{toJson(secrets)  }}
+            cat needs:    ${{toJson(needs)    }}
+            cat inputs:   ${{toJson(inputs)   }}
       - id: setVariables
         run: |
           echo "::set-output name=runners_tags::$input"
         env:
           input: ${{ inputs.runnersJson }}
-  codeql:
+  debug_contextes:
     runs-on: ${{fromJson(needs.runners_setup.outputs.runners_tags)}}
     needs: runners_setup
     steps:
       - uses: hmarr/debug-action@v2
       - name: Dump all the contextes
         run: |
-            echo github:   ${{toJson(github)   }}
-            echo env:      ${{toJson(env)      }}
-            echo vars:     ${{toJson(vars)     }}
-            echo job:      ${{toJson(job)      }}
-            echo steps:    ${{toJson(steps)    }}
-            echo runner:   ${{toJson(runner)   }}
-            echo secrets:  ${{toJson(secrets)  }}
-            echo needs:    ${{toJson(needs)    }}
-            echo inputs:   ${{toJson(inputs)   }}
+            cat github:   ${{toJson(github)   }}
+            cat env:      ${{toJson(env)      }}
+            cat vars:     ${{toJson(vars)     }}
+            cat job:      ${{toJson(job)      }}
+            cat steps:    ${{toJson(steps)    }}
+            cat runner:   ${{toJson(runner)   }}
+            cat secrets:  ${{toJson(secrets)  }}
+            cat needs:    ${{toJson(needs)    }}
+            cat inputs:   ${{toJson(inputs)   }}
