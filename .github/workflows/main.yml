@@ -11,13 +11,13 @@ jobs:
   ReusableWorkflowWithMultipleLabels:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
-      runnersJson: "['ubuntu-latest', 'spmething-else']"
+      runners_tags: ubuntu-latest, something-else
 
   ReusableWorkflowWithSingleLable:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
-      runnersJson: ubuntu-latest
-        
+      runners_tags: ubuntu-latest
+
 
 #   second:
 #     runs-on: ubuntu-latest
