@@ -8,10 +8,15 @@ on:
       - main
 
 jobs:
-  ReusableWorkflow:
+  ReusableWorkflowWithMultipleLabels:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       runnersJson: "['ubuntu-latest', 'spmething-else']"
+
+  ReusableWorkflowWithSingleLable:
+    uses: ./.github/workflows/reusable_workflow.yml
+    with:
+      runnersJson: ubuntu-latest
         
 
 #   second:

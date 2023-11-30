@@ -47,10 +47,10 @@ jobs:
       - id: setVariables
         name: Prepare variables for the later steps
         run: |
-          set -x
-          echo $input
+
           # Make something like a JSON array if a single value, or leave as is if something like a JSON array
           input="$(if [ "${input:0:1}" == '[' ]; then echo "$input"; else echo "['${input}']"; fi)"
+
           # Prepend self-hosted to an JSON array
           input="${input/\[/\[\'self-hosted\',}"
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
