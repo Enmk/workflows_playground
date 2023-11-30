@@ -11,7 +11,7 @@ jobs:
   ReusableWorkflowWithMultipleLabels:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
-      runners_tags: ubuntu-latest, something-else
+      runners_tags: ubuntu-latest, something-else, another-tag
 
   ReusableWorkflowWithSingleLable:
     uses: ./.github/workflows/reusable_workflow.yml
