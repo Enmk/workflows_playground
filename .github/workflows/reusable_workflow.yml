@@ -47,11 +47,9 @@ jobs:
       - id: setVariables
         name: Prepare variables for the later steps
         run: |
+          set -x
           echo $input
           echo ${input/\[/\[\'self-hosted\',} # prepend self-hosted to the runner tags
-          set -x
-          echo VAR="${{ fromJson(env.input) || toJson(env.input) }}"
-          echo "$VAR"
           echo "runners_tags=$input" >> ${GITHUB_OUTPUT}
         env:
           input: ${{ inputs.runnersJson }}
