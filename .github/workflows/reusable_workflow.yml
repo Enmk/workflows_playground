@@ -52,7 +52,7 @@ jobs:
         name: Prepare variables for the later steps
         run: |
           # Prepend self-hosted
-          input="self-hosted, ${input}"
+          input="${input}"
 
           # Remove all whitespace
           input="$(echo ${input} | tr -d [:space:])"
