@@ -6,6 +6,10 @@ on:
         description: 'set of tags for a runner'
         required: true
         type: string
+      download_artifacts_pattern:
+        description: A glob pattern to the artifacts that should be downloaded. (see https://github.com/actions/download-artifact `pattern`)
+        type: string
+        required: false
 jobs:
   pre_debug_contextes:
     runs-on: ubuntu-latest
@@ -100,3 +104,9 @@ jobs:
     steps:
         - name: bogus step
           run: true
+
+        - name: Download json reports
+          uses: actions/download-artifact@v4
+          with:
+            pattern: ${{ inputs.download_artifacts_pattern }}
+            path: ${{ env.REPORTS_PATH }}
