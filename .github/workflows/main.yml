@@ -33,14 +33,12 @@ jobs:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       runners_tags: ubuntu-latest, something-else, another-tag
-      download_artifacts_pattern: '*.json'
 
 
-  ReusableWorkflowWithSingleLable:
+  ReusableWorkflowWithSingleLabel:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       runners_tags: ubuntu-latest
-      download_artifacts_pattern: '*'
 
 
   ReusableWorkflowWithArtifactFilter:
